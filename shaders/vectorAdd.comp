@@ -1,0 +1,29 @@
+#version 450
+/* built in variables:
+in uvec3 gl_NumWorkGroups;
+in uvec3 gl_WorkGroupID;
+in uvec3 gl_LocalInvocationID;
+in uvec3 gl_GlobalInvocationID;
+in uint  gl_LocalInvocationIndex;
+*/
+layout( local_size_x_id = 0) in;
+
+// Push constant
+layout(push_constant) uniform PushStruct {
+    uint size;    // Array size
+} params;
+
+layout(binding = 0) buffer input1 {uint v1[];};
+layout(binding = 1) buffer input2 {uint v2[];};
+layout(binding = 2) buffer outBuf {uint v3[];};
+
+void main() {
+    //grab global ID
+	uint gID = gl_GlobalInvocationID.x;
+    //make sure we don't access past the buffer size
+    if(gID < params.size)
+    {
+        // do math
+        v3[gID] = v1[gID] + v2[gID];
+    }
+} 

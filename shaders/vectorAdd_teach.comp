@@ -1,0 +1,20 @@
+#version 450
+/* built in variables:
+in uvec3 gl_NumWorkGroups;
+in uvec3 gl_WorkGroupID;
+in uvec3 gl_LocalInvocationID;
+in uvec3 gl_GlobalInvocationID;
+in uint  gl_LocalInvocationIndex;
+*/
+
+// Bind the workgroup size
+// it is accessible as: gl_WorkGroupSize.x / .y / .z
+
+// Push constant
+
+// Bind DescriptorSets buffers
+
+void main() {
+	uint gID = gl_GlobalInvocationID.x;
+    
+}
